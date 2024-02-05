@@ -1,0 +1,147 @@
+Microsoft Windows [Version 10.0.19045.3930]
+(c) Microsoft Corporation. All rights reserved.
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>npm i
+npm WARN deprecated abab@2.0.5: Use your platform's native atob() and btoa() methods instead
+npm WARN deprecated domexception@2.0.1: Use your platform's native DOMException instead
+npm WARN deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm WARN deprecated formidable@1.2.6: Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau
+npm WARN deprecated superagent@6.1.0: Please upgrade to v7.0.2+ of superagent.  We have fixed numerous issues with streams, form-data, attach(), filesystem errors not bubbling up (ENOENT on attach()), and all tests are now passing.  See the releases tab for more information at <https://github.com/visionmedia/superagent/releases>.
+npm WARN deprecated sinon@12.0.1: 16.1.1
+
+added 512 packages, and audited 513 packages in 7s
+
+46 packages are looking for funding
+  run `npm fund` for details
+
+19 vulnerabilities (10 moderate, 6 high, 3 critical)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>npm test
+
+> unit-mvc@1.0.0 test
+> jest --color
+
+ FAIL  tests/post.test.js
+  Post controller
+    create
+      √ should return the created post object (3 ms)
+      √ should return status 500 on server error
+    index (get all)
+      √ should return array of post or empty array (1 ms)
+      × should return status 500 on server error (6 ms)
+
+  ● Post controller › index (get all) › should return status 500 on server error
+
+    TypeError: Attempted to wrap find which is already wrapped
+
+      101 |
+      102 |         it('should return status 500 on server error', () => {
+    > 103 |             updatePostStub = sinon.stub(PostModel, 'find').yields(error);
+          |                                    ^
+      104 |
+      105 |             PostController.index(req, res);
+      106 |
+
+      at checkWrappedMethod (node_modules/sinon/lib/sinon/util/core/wrap-method.js:64:21)
+      at wrapMethod (node_modules/sinon/lib/sinon/util/core/wrap-method.js:135:13)
+      at Function.stub (node_modules/sinon/lib/sinon/stub.js:123:44)
+      at Sandbox.stub (node_modules/sinon/lib/sinon/sandbox.js:388:37)
+      at Object.<anonymous> (tests/post.test.js:103:36)
+      --------------
+      Error: Stack Trace for original
+      at extendObjectWithWrappedMethods (node_modules/sinon/lib/sinon/util/core/wrap-method.js:169:34)
+      at wrapMethod (node_modules/sinon/lib/sinon/util/core/wrap-method.js:157:5)
+      at Function.stub (node_modules/sinon/lib/sinon/stub.js:123:44)
+      at Sandbox.stub (node_modules/sinon/lib/sinon/sandbox.js:388:37)
+      at Object.<anonymous> (tests/post.test.js:94:36)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 3 passed, 4 total
+Snapshots:   0 total
+Time:        1.621 s
+Ran all test suites.
+Jest did not exit one second after the test run has completed.
+
+This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+^C^CTerminate batch job (Y/N)? Y
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   tests/post.test.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git add -a
+error: unknown switch `a'
+usage: git add [<options>] [--] <pathspec>...
+
+    -n, --[no-]dry-run    dry run
+    -v, --[no-]verbose    be verbose
+
+    -i, --[no-]interactive
+                          interactive picking
+    -p, --[no-]patch      select hunks interactively
+    -e, --[no-]edit       edit current diff and apply
+    -f, --[no-]force      allow adding otherwise ignored files
+    -u, --[no-]update     update tracked files
+    --[no-]renormalize    renormalize EOL of tracked files (implies -u)
+    -N, --[no-]intent-to-add
+                          record only the fact that the path will be added later
+    -A, --[no-]all        add changes from all tracked and untracked files
+    --[no-]ignore-removal ignore paths removed in the working tree (same as --no-all)
+    --[no-]refresh        don't add, only refresh the index
+    --[no-]ignore-errors  just skip files which cannot be added because of errors
+    --[no-]ignore-missing check if - even missing - files are ignored in dry run
+    --[no-]sparse         allow updating entries outside of the sparse-checkout cone
+    --[no-]chmod (+|-)x   override the executable bit of the listed files
+    --[no-]pathspec-from-file <file>
+                          read pathspec from file
+    --[no-]pathspec-file-nul
+                          with --pathspec-from-file, pathspec elements are separated with NUL character
+
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git add -A
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   tests/post.test.js
+
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git commit -am "Add failing test for next Module A functionality"
+[main 4c8e939] Add failing test for next Module A functionality
+ 1 file changed, 13 insertions(+), 2 deletions(-)
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git push origin main'
+error: src refspec main' does not match any
+error: failed to push some refs to 'https://github.com/DawnSingularity/stswengUnitTest.git'
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git push origin main
+remote: Permission to DawnSingularity/stswengUnitTest.git denied to argo246.
+fatal: unable to access 'https://github.com/DawnSingularity/stswengUnitTest.git/': The requested URL returned error: 403
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>git push origin main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 418 bytes | 418.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/DawnSingularity/stswengUnitTest.git
+   297f3b2..4c8e939  main -> main
+
+E:\[DLSU]\3rd Year Term 2\STSWENG\node-unit-mvc\stswengUnitTest>
