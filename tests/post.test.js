@@ -90,20 +90,21 @@ describe('Post controller', () => {
                 }];
         });
 
+        afterEach(() => {
+            // executed after the test case
+            updatePostStub.restore();
+        });
+
         it('should return array of post or empty array', () => {
             updatePostStub = sinon.stub(PostModel, 'find').yields(null, expectedResult);
-
             PostController.index(req, res);
-
             sinon.assert.calledWith(PostModel.find, {});
             sinon.assert.calledWith(res.json, sinon.match.array);
         });
 
         it('should return status 500 on server error', () => {
             updatePostStub = sinon.stub(PostModel, 'find').yields(error);
-
             PostController.index(req, res);
-
             sinon.assert.calledWith(PostModel.find, {});
             sinon.assert.calledWith(res.status, 500);
             sinon.assert.calledOnce(res.status(500).end);
