@@ -81,14 +81,15 @@ describe('Post controller', () => {
                 json: sinon.spy(),
                 status: sinon.stub().returns({ end: sinon.spy() })
             };
-            expectedResult = { 
+            expectedResult = [ { 
                     _id: '507asdghajsdhjgasd',
                     title: 'My first test post',
                     content: 'Random content',
                     author: 'stswenguser',
                     date: Date.now()
-                };
+                }];
         });
+
         it('should return array of post or empty array', () => {
             updatePostStub = sinon.stub(PostModel, 'find').yields(null, expectedResult);
 
@@ -96,6 +97,16 @@ describe('Post controller', () => {
 
             sinon.assert.calledWith(PostModel.find, {});
             sinon.assert.calledWith(res.json, sinon.match.array);
+        });
+
+        it('should return status 500 on server error', () => {
+            updatePostStub = sinon.stub(PostModel, 'find').yields(error);
+
+            PostController.index(req, res);
+
+            sinon.assert.calledWith(PostModel.find, {});
+            sinon.assert.calledWith(res.status, 500);
+            sinon.assert.calledOnce(res.status(500).end);
         });
     });
 
